@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css">
+  <title>Kavrak Kapsulasi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      background: url('https://images.unsplash.com/photo-1590080876596-bf4c5c8f0d7a') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    header img {
+      max-width: 150px;
+      border-radius: 10px;
+    }
+
+    header h1 {
+      margin-top: 15px;
+      color: #00ffa6;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    h2 {
+      color: #00ffa6;
+    }
+
+    a {
+      color: #ffef85;
+    }
+
+    .contact {
+      margin-top: 30px;
+      background-color: rgba(0, 100, 80, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#home">Bosh sahifa</a>
+    <a href="#foydasi">Foydasi</a>
+    <a href="#ishlatish">Ishlatish</a>
+    <a href="#kontakt">Kontaktlar</a>
+  </nav>
+
+  <header id="home">
+    <img src="kavrak.jpg" alt="Kavrak kapsulasi rasmi" />
+    <h1>Kavrak Kapsulasi</h1>
+  </header>
+
+  <section id="foydasi">
+    <h2>Foydasi</h2>
+    <p>Kavrak shifobaxsh giyohi bilan sog`lom hayotga qayting va uzoq umr ko`ring.
+      Sahar, Gijjalar va psoriaz bo`g`in og`riqlari, Oshqozon yaralari, Mioma, Yurak va qon tomir kasalliklari, Buyrak va o`t qopidagi toshlar, Qabziyat, Suyak yemirilishi
+    </p>
+  </section>
+
+  <section id="ishlatish">
+    <h2>Qanday ishlatiladi</h2>
+    <p>Bemor yoshi, vazni va kasallik tarixiga qarab dozalar va davolash kursi belgilanadi</p>
+  </section>
+
+  <section id="kontakt" class="contact">
+    <h2>Kontaktlar</h2>
+    <p>Telefon: +998 95 008 82 40</p>
+    <p>Admin lichkasi @Sevara_Tulkinbayevna</p>
+    <p>Telegram: <a href="https://t.me/Kavrak_shifo_nur" target="_blank">@kavrak_uz</a></p>
+  </section>
+  
+  
+  
+  <section id="" class="contact">
+    <h2>Buyurtma berish</h2>
+    <form id="order-form">
+      <label for="name">Ismingiz:</label><br />
+      <input type="text" id="name" name="user_name" required /><br /><br />
+  
+      <label for="phone">Telefon raqamingiz:</label><br />
+      <input type="tel" id="phone" name="user_phone" required placeholder="+998..." /><br /><br />
+  
+      <label for="quantity">Kapsula soni:</label><br />
+      <input type="number" id="quantity" name="user_order" min="1" value="1" required /><br /><br />
+  
+      <button type="submit">Buyurtma berish</button>
+    </form>
+    <p id="result" style="margin-top:10px; color:lightgreen;"></p>
+  </section>
+  
+  
+  
+  <script>
+    const form = document.getElementById('orderForm');
+    const result = document.getElementById('result');
+  
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const name = form.name.value;
+      const phone = form.phone.value;
+      const quantity = form.quantity.value;
+  
+      // Hozircha oddiy chiqamiz — bu yerda email yoki Telegramga yuborishni qo‘shamiz
+      result.textContent = Rahmat, ${name}! Buyurtmangiz qabul qilindi. Tez orada siz bilan bog'lanamiz.;
+  
+      // Formani tozalash
+      form.reset();
+    });
+  </script>
+  
+  <script>
+    const form = document.getElementById('orderForm');
+    const result = document.getElementById('result');
+  
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const name = form.name.value;
+      const phone = form.phone.value;
+      const quantity = form.quantity.value;
+  
+      const message = Yangi buyurtma:%0AIsm: ${name}%0ATelefon: ${phone}%0AKapsula soni: ${quantity};
+  
+      const token = '7769043219:AAFM1shiyOlkqZ_fx1abzED9-ZegA1-XAV0'; // tokenni shu yerga qo'y
+      const chat_id = '6526965553'; // bu yerga chat_id ni qo'y
+  
+      const url = https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${message};
+  
+      fetch(url)
+        .then(res => {
+          result.textContent = Buyurtmangiz yuborildi! Tez orada siz bilan bogʻlanamiz.;
+          form.reset();
+        })
+        .catch(err => {
+          result.textContent = 'Xatolik yuz berdi. Iltimos, qayta urinib koʻring.';
+          console.error(err);
+        });
+    });
+  </script>
+  
+  <!-- Email yuborish formasi -->
+
+
+<!-- EmailJS JS kutubxonasi -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function () {
+    emailjs.init("k2eL-UTZvymT9vBvV"); // bu joyga o'zingning PUBLIC KEY'ni yoz
+  })();
+
+  document.getElementById("order-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_moshshom", "template_xwcof0x", this).then(
+      function () {
+        alert("Buyurtma yuborildi!");
+      },
+      function (error) {
+        alert("Xatolik: " + JSON.stringify(error));
+      }
+    );
+  });
+</script>
+
+</body>
+</html>
